@@ -1,29 +1,47 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Cities list</h4>
-            <div class="table-responsive">
-                <table id="city-table" class="table table-bordred table-striped">
-                    <thead>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Delete</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Hardcoded city</td>
-                            <td>This city is hardcoded and therefore not interesting</td>
-                            <td>
-                                <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete">
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </button>
-                                </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Cities list</h4>
+      <div class="table-responsive">
+        <table id="city-table" class="table table-bordred table-striped">
+          <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let city of cities; let i = index">
+              <td>{{city.name}}</td>
+              <td>{{city.description}}</td>
+              <td>
+                <p data-placement="top" data-toggle="tooltip" title="Delete">
+                  <button (click)="cityID = city.id; openModal(template)" class="btn btn-danger btn-xs">
+                    <span>
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                    </span>
+                  </button>
+                </p>
+              </td>
+            </tr>
+            <tr *ngIf="!cities">
+              <td></td>
+              <td class="validation">
+                There are no cities to display
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
+<div>
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Are you sure you would like to Delete this city?</p>
+      <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+      <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+    </div>
+  </ng-template>
 </div>

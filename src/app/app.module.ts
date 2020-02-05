@@ -8,7 +8,8 @@ import { BaseService } from './services/base.service';
 import { CitiesEndpoint } from './services/cities/cities-endpoint.service';
 import { CitiesService } from './services/cities/cities.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,13 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    ModalModule.forRoot()
   ],
   providers: [
-    BaseService
+    BaseService,
+    CitiesEndpoint
   ],
   bootstrap: [AppComponent]
 })
